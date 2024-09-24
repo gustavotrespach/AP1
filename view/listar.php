@@ -18,13 +18,19 @@
     <div class="container">
         <table class="table table-success table-striped">
             <tr>
-                <td>Descrição</td>
-                <td>Preço</td>
+                <td class="fw-bold">Descrição</td>
+                <td class="fw-bold">Preço</td>
+                <td class="fw-bold">Ações</td>
             </tr>
             <?php  foreach($listaArray as $produto): ?>
             <tr>
                 <td><?php echo $produto["descricao"]; ?></td>
                 <td><?php echo $produto["preco"]; ?></td>
+                <td>
+                    <a class="btn btn-warning" href="http://localhost:8081/aula04/controller/ProdutoController.php?metodo=editar&id=<?php echo $produto['id']; ?>">Editar</a>
+
+                    <a class="btn btn-danger" href="http://localhost:8081/aula04/controller/ProdutoController.php?metodo=excluir&id=<?php echo $produto['id']; ?>">Excluir</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         </table>

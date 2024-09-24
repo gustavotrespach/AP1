@@ -14,6 +14,42 @@ class Produto
         $this->preco = $preco;
     }
 
+    public function excluir(int $id)
+    {
+        $conn = $this->criaConexaoComBanco();
+
+        $sql = "DELETE FROM produtos WHERE id = {$id}";
+
+        if($conn->query($sql) === TRUE) {
+            //echo "Registro excluido com sucesso";
+        }else {
+            //echo "Erro ao excluir no banco de dados";
+        } 
+    }
+
+    public function editar(int $id)
+    {
+        $conn = $this->criaConexaoComBanco();
+
+        $sql = "UPDATE produtos SET 
+        descricao = '{$this->descricao}',
+        preco = '{$this->preco}'
+        WHERE id = {$id}";
+
+        if($conn->query($sql) === TRUE) {
+            echo "Registro editado com sucesso";
+        }else {
+            echo "Erro ao editar no banco de dados";
+        }
+    }
+
+    public function buscaPorId(int $id):array
+    {
+        $conn = $this->criaConexaoComBanco();
+        $resultado = mysqli_query($conn, "select * from produtos WHERE id = {$id}");
+         
+        return $resultado->fetch_assoc();
+    }
 
     public function cadastrar()
     {
